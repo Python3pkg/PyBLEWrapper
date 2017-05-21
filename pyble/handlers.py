@@ -13,9 +13,7 @@ class PeripheralHandlerMount(type):
         cls.pool[name] = cls
 
 
-class PeripheralHandler(object):
-    __metaclass__ = PeripheralHandlerMount
-
+class PeripheralHandler(object, metaclass=PeripheralHandlerMount):
     def __init__(self, peripheral, UUID=""):
         self.peripheral = peripheral
         self.UUID = UUID
@@ -27,7 +25,7 @@ class PeripheralHandler(object):
         return self.profile_handlers
 
     def keys(self):
-        return self.profile_handlers.keys()
+        return list(self.profile_handlers.keys())
 
     def __getitem__(self, key, default=None):
         try:
@@ -87,7 +85,7 @@ class ProfileHandlerMount(type):
         return self._handlers
 
     def keys(self):
-        return self._handlers.keys()
+        return list(self._handlers.keys())
 
     def __getitem__(self, key, retry=True, default=None):
         try:
@@ -114,7 +112,7 @@ class ProfileHandlerMount(type):
         if hasattr(handler_cls, "UUID"):
             cls._handlers[handler_cls.UUID] = handler_cls
         else:
-            print "An UUID is needed for a ProfileHandler"
+            print("An UUID is needed for a ProfileHandler")
 
     @staticmethod
     def register_path(profile_path):
@@ -138,8 +136,7 @@ class ProfileHandlerMount(type):
                             globals()[module] = mod_obj = imp.load_module(module, f, filename, desc)
 
 
-class ProfileHandler(object):
-    __metaclass__ = ProfileHandlerMount
+class ProfileHandler(object, metaclass=ProfileHandlerMount):
     names = {}
 
     def initialize(self):
@@ -166,4 +163,4 @@ class DefaultProfileHandler(ProfileHandler):
         return " ".join(ans)
 
     def on_notify(self, characteristic, data):
-        print self.on_read(characteristic, data)
+        print(self.on_read(characteristic, data))

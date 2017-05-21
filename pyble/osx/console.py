@@ -11,7 +11,7 @@ from pprint import pformat
 try:
     from queue import Queue, Empty
 except:
-    from Queue import Queue, Empty
+    from queue import Queue, Empty
 
 from pyble.patterns import LoggerObject
 
@@ -79,7 +79,7 @@ class OSXCmd(cmd.Cmd, LoggerObject):
                 break
             except Exception as e:
                 import traceback
-                print traceback.format_exc()
+                print(traceback.format_exc())
                 break
         # cleanup
         self.postloop()
@@ -156,7 +156,7 @@ class OSXCmd(cmd.Cmd, LoggerObject):
             return
         output = ""
         oldstdout = self.stdout
-        from StringIO import StringIO
+        from io import StringIO
         import ast
         buffer = StringIO()
         self.stdout = buffer

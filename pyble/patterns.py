@@ -20,7 +20,7 @@ class deprecated(object):
     def _wrapper(self, func, *args, **kwargs):
         self.count += 1
         if self.count == 1:
-            print self.func.__name__, "is deprecated"
+            print(self.func.__name__, "is deprecated")
         return func(*args, **kwargs)
 
 # debuggable and trace
@@ -104,7 +104,7 @@ class TraceObject(object):
         class_name = frame.f_globals['__name__']
         if cls:
             class_name = frame.f_locals['self'].__class__.__name__
-        print "TraceIt(Line) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip())
+        print("TraceIt(Line) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip()))
 
     @staticmethod
     def trace_calls(frame, event, arg):
@@ -118,7 +118,7 @@ class TraceObject(object):
         class_name = frame.f_globals['__name__']
         if cls:
             class_name = frame.f_locals['self'].__class__.__name__
-        print "TraceIt(Call) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip())
+        print("TraceIt(Call) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip()))
 
     @staticmethod
     def trace_exceptions(frame, event, arg):
@@ -131,7 +131,7 @@ class TraceObject(object):
         if arg:
             exc_type, exc_value, exc_traceback = arg
 #        print arg
-        print "TraceIt(Exception) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip())
+        print("TraceIt(Exception) %s:%s:%3d: %s" % (class_name, func_name, lineno, line.rstrip()))
 #        print "TraceIt(Exception) %s:%s" % (exc_type.__name__, exc_value)
 
     @staticmethod
@@ -160,8 +160,8 @@ class TraceObject(object):
 
         except Exception as e:
             import traceback
-            print traceback.format_exc()
-            print e
+            print(traceback.format_exc())
+            print(e)
             return
         try:
             sys.stdout.flush()
@@ -214,7 +214,7 @@ class LoggerObject(object):
         signal.signal(signal.SIGTERM, self.__class__.signal_handler)
         # tracing
         if traceit:
-            print self.__class__.__name__, "in trace"
+            print(self.__class__.__name__, "in trace")
             sys.settrace(TraceObject().traceIt)
         else:
             sys.settrace(None)

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import logging
 import pkgutil
-import profile
-from patterns import LoggerObject
-from handlers import ProfileHandler
+from . import profile
+from .patterns import LoggerObject
+from .handlers import ProfileHandler
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ class Service(LoggerObject):
 
     def __getitem__(self, key):
         if self.handler and self.handler.names:
-            for uuid, name in self.handler.names.iteritems():
+            for uuid, name in self.handler.names.items():
                 if name == key:
                     key = uuid
                     break

@@ -4,7 +4,7 @@ import time
 @pytest.fixture(scope="function")
 def app(request):
     from pyble import backend
-    print ""
+    print("")
 
     app = backend.load(shell=False)
 
@@ -16,7 +16,7 @@ def app(request):
 @pytest.fixture(scope="function")
 def app_noshell(request):
     from pyble import backend
-    print ""
+    print("")
 
     app = backend.load(shell=False)
 
@@ -24,7 +24,7 @@ def app_noshell(request):
         pass
 
     def teardown():
-        print ""
+        print("")
         app.inq.put("stop")
 
     request.addfinalizer(teardown)

@@ -1,6 +1,6 @@
 #import logging
-from patterns import LoggerObject
-from handlers import ProfileHandler
+from .patterns import LoggerObject
+from .handlers import ProfileHandler
 
 
 class Peripheral(LoggerObject):
@@ -82,9 +82,9 @@ class Peripheral(LoggerObject):
     def __getitem__(self, key):
         if self.delegate:
             found = False
-            for pHandler in self.delegate.profile_handlers.values():
+            for pHandler in list(self.delegate.profile_handlers.values()):
                 if pHandler.names:
-                    for uuid, name in pHandler.names.iteritems():
+                    for uuid, name in pHandler.names.items():
                         if name == key:
                             key = uuid
                             found = True
@@ -119,7 +119,7 @@ class Peripheral(LoggerObject):
             try:
                 self.update_state_callback(self.state)
             except Exception as e:
-                print e
+                print(e)
 
     def updateRSSI(self, rssi):
         if self._delegate:
@@ -129,7 +129,7 @@ class Peripheral(LoggerObject):
             try:
                 self.update_rssi_callback(rssi)
             except Exception as e:
-                print e
+                print(e)
 
     def __repr__(self):
         if self.name:

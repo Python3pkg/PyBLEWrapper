@@ -19,7 +19,7 @@ class MyDefault(ProfileHandler):
     }
 
     def initialize(self):
-        print "init"
+        print("init")
         pass
 
     def on_read(self, characteristic, data):
@@ -57,7 +57,7 @@ class Acceleration(ProfileHandler):
         cUUID = characteristic.UUID
         if cUUID == "FFA6":
             x, y, z = self.handleXYZ(data)
-            print x, y, z
+            print(x, y, z)
 
     def handleXYZ(self, data):
         x, y, z = struct.unpack(">HHH", data)
@@ -79,13 +79,13 @@ class MyPeripheral(PeripheralHandler):
         self.addProfileHandler(MyDefault)
 
     def on_connect(self):
-        print self.peripheral, "connect"
+        print(self.peripheral, "connect")
 
     def on_disconnect(self):
-        print self.peripheral, "disconnect"
+        print(self.peripheral, "disconnect")
 
     def on_rssi(self, value):
-        print self.peripheral, " update RSSI:", value
+        print(self.peripheral, " update RSSI:", value)
 
 
 def main():
@@ -99,10 +99,10 @@ def main():
             target = cm.startScan()
             if target and target.name == "EcoZe1":
 #            if target:
-                print target
+                print(target)
                 break
         except Exception as e:
-            print e
+            print(e)
     target.delegate = MyPeripheral
     p = cm.connectPeripheral(target)
     for service in p:
@@ -110,16 +110,16 @@ def main():
 #            continue
 #        if service.UUID == "180A":
 #            continue
-        print service
+        print(service)
         for c in service:
-            print c, " : ",
-            print c.value
+            print(c, " : ", end=' ')
+            print(c.value)
 #            print c
 #            print "description: ", c.description
 #            print "value      : ", c.value
 
     c = p["EcoZen Profile"]["EcoZen Char 1"]
-    print c.value
+    print(c.value)
 #    c = p["FFA0"]["FFA1"]
 #    p["FFA0"]["FFA6"].notify = True
 #    c.value = bytearray(chr(1))

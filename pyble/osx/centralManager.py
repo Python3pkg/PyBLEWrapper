@@ -1,15 +1,15 @@
 from objc import *
 from Foundation import *
-from IOBluetooth import *
+from .IOBluetooth import *
 
 from pyble._roles import Central, Peripheral
-from peripheral import OSXPeripheral
+from .peripheral import OSXPeripheral
 
 import logging
 logger = logging.getLogger(__name__)
 
 import uuid
-from util import CBUUID2String
+from .util import CBUUID2String
 from datetime import datetime, timedelta
 from pyble.patterns import Trace
 from threading import Thread, Condition, Event
@@ -86,7 +86,7 @@ class OSXCentralManager(NSObject, Central):
                 try:
                     self.cv.notify()
                 except Exception as e:
-                    print e
+                    print(e)
             return ret
         return wrapper
 
@@ -135,7 +135,7 @@ class OSXCentralManager(NSObject, Central):
                 if self._stop.isSet():
                     break
             except KeyboardInterrupt:
-                print "\nEnd loop ..."
+                print("\nEnd loop ...")
                 break
 
     @python_method
@@ -426,7 +426,7 @@ class OSXCentralManager(NSObject, Central):
         return 
         self.logger.info("didRetrieveConnectedPeripherals")
         for p in peripherals:
-            print p
+            print(p)
 
     def centralManager_didRetrievePeripherals_(self, central, peripherals):
         self.logger.info("didRetrievePeripherals")

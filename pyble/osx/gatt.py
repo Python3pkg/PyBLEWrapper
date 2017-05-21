@@ -2,7 +2,7 @@ from Foundation import NSData
 from objc import *
 
 from pyble._gatt import Service, Characteristic, Descriptor
-from util import CBUUID2String
+from .util import CBUUID2String
 
 import uuid
 import logging
@@ -137,13 +137,13 @@ class OSXBLECharacteristic(Characteristic):
         return None
 
     def showProperties(self):
-        print "%s:%s:%s properties" % (self.service.peripheral, self.service, self)
+        print("%s:%s:%s properties" % (self.service.peripheral, self.service, self))
         pprint(self.properties)
 
     def showDescriptors(self):
-        print "%s:%s:%s descriptors" % (self.service.peripheral, self.service, self)
+        print("%s:%s:%s descriptors" % (self.service.peripheral, self.service, self))
         for d in self.descriptors:
-            print "\t%s: " % d, d.value
+            print("\t%s: " % d, d.value)
 
     @property
     def notify(self):

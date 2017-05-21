@@ -1,4 +1,4 @@
-import const
+from . import const
 
 import pkgutil
 import re
@@ -36,7 +36,7 @@ def resolveUUIDFromName(uuids, name):
         return None
 
 def resolveNameFromUUID(uuids, uuid):
-    for k, v in uuids.items():
+    for k, v in list(uuids.items()):
         if v[1] == uuid:
             return k
     return None
@@ -44,8 +44,8 @@ def resolveNameFromUUID(uuids, uuid):
 if __name__ == "__main__":
     from pprint import pprint
     d = load()
-    print(resolveNameFromUUID(d, 0x180D))
-    print(resolveUUIDFromName(d, "Tx Power"))
+    print((resolveNameFromUUID(d, 0x180D)))
+    print((resolveUUIDFromName(d, "Tx Power")))
     d = loadBy("characteristic")
     pprint(d)
     d = loadBy("test")

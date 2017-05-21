@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 
 # objective-c frameworks
 from objc import *
@@ -19,7 +19,7 @@ from util import readDeviceInfo
 from pprint import pformat
 
 try:
-    from Queue import Queue, Empty
+    from queue import Queue, Empty
 except:
     from queue import Queue, Empty
 
@@ -88,7 +88,7 @@ class OSXPeripheralApp(OSXCmd):
         """Show peripheral supported services
         """
         for service in self.p.services:
-            print service
+            print(service)
 
     def do_read(self, args):
         arglist = args.split()
@@ -100,11 +100,11 @@ class OSXPeripheralApp(OSXCmd):
             except:
                 return
             profile = self.p[pUUID]
-            print profile
+            print(profile)
             for c in profile:
-                print " ", c
-                print "    Description: ", c.description
-                print "    Value      : ", c.value
+                print(" ", c)
+                print("    Description: ", c.description)
+                print("    Value      : ", c.value)
             
         elif len(arglist) == 2:
             # read a char in profile
@@ -112,7 +112,7 @@ class OSXPeripheralApp(OSXCmd):
             cUUID = arglist[1]
             profile = self.p[pUUID]
             char = self.p[pUUID][cUUID]
-            print char, ":", char.value
+            print(char, ":", char.value)
         else:
             self.help_read()
 
@@ -129,8 +129,8 @@ class OSXPeripheralApp(OSXCmd):
     def do_state(self, args):
         """Show Peripheral state
         """
-        print self.p
-        print self.p.rssi
+        print(self.p)
+        print(self.p.rssi)
 
 @Trace
 class OSXCentralManagerApp(OSXCmd):
@@ -252,7 +252,7 @@ class OSXCentralManagerApp(OSXCmd):
         try:
             self.centralManager.startScan(timeout=seconds, numOfPeripherals=num)
         except BLETimeoutError as e:
-            print e
+            print(e)
 
     def do_stop(self, args):
         """Stop scan command
@@ -355,6 +355,6 @@ if __name__ == "__main__":
         app.cmdloop()
     except Exception as e:
         import traceback
-        print traceback.print_exc()
-        print e
+        print(traceback.print_exc())
+        print(e)
 

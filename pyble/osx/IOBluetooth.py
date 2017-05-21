@@ -13,22 +13,22 @@ CBCentralManagerStatePoweredOff = 4
 CBCentralManagerStatePoweredOn = 5
 
 # CBCentralManager option keys
-CBCentralManagerScanOptionAllowDuplicatesKey = u"kCBScanOptionAllowDuplicates"
-CBConnectPeripheralOptionNotifyOnDisconnectionKey = u"kCBConnectOptionNotifyOnDisconnection"
+CBCentralManagerScanOptionAllowDuplicatesKey = "kCBScanOptionAllowDuplicates"
+CBConnectPeripheralOptionNotifyOnDisconnectionKey = "kCBConnectOptionNotifyOnDisconnection"
 
 # CBCharacteristicWriteType CONSTS
 CBCharacteristicWriteWithResponse = 0
 CBCharacteristicWriteWithoutResponse = 1
 
 # ADvertisement Data Retrieval Keys
-CBAdvertisementDataLocalNameKey = u"kCBAdvDataLocalName"
-CBAdvertisementDataManufacturerDataKey = u"kCBAdvDataManufacturerData"
-CBAdvertisementDataServiceDataKey = u"kCBAdvDataServiceData"
-CBAdvertisementDataServiceUUIDsKey = u"kCBAdvDataServiceUUIDs"
-CBAdvertisementDataOverflowServiceUUIDsKey = u"kCBAdvDataOverflowService"
-CBAdvertisementDataTxPowerLevelKey = u"kCBAdvDataTxPowerLevel"
-CBAdvertisementDataIsConnectable = u"kCBAdvDataIsConnectable"
-CBAdvertisementDataSolicitedServiceUUIDsKey = u"kCBAdvDataSolicitedServiceUUIDs"
+CBAdvertisementDataLocalNameKey = "kCBAdvDataLocalName"
+CBAdvertisementDataManufacturerDataKey = "kCBAdvDataManufacturerData"
+CBAdvertisementDataServiceDataKey = "kCBAdvDataServiceData"
+CBAdvertisementDataServiceUUIDsKey = "kCBAdvDataServiceUUIDs"
+CBAdvertisementDataOverflowServiceUUIDsKey = "kCBAdvDataOverflowService"
+CBAdvertisementDataTxPowerLevelKey = "kCBAdvDataTxPowerLevel"
+CBAdvertisementDataIsConnectable = "kCBAdvDataIsConnectable"
+CBAdvertisementDataSolicitedServiceUUIDsKey = "kCBAdvDataSolicitedServiceUUIDs"
 
 
 # CBError Constants

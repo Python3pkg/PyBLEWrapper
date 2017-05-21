@@ -1,10 +1,10 @@
 from Foundation import *
-from IOBluetooth import *
+from .IOBluetooth import *
 from objc import *
 
 from pyble._roles import Peripheral
-from gatt import OSXBLEService, OSXBLECharacteristic, OSXBLEDescriptor
-from util import CBUUID2String
+from .gatt import OSXBLEService, OSXBLECharacteristic, OSXBLEDescriptor
+from .util import CBUUID2String
 
 import uuid
 import logging
@@ -127,7 +127,7 @@ class OSXPeripheral(NSObject, Peripheral):
                 try:
                     self.cv.notifyAll()
                 except Exception as e:
-                    print e
+                    print(e)
         return wrapper
 
     @_waitResp
@@ -225,7 +225,7 @@ class OSXPeripheral(NSObject, Peripheral):
     @_notifyResp
     def didDiscoverCharacteristicsForService(self, peripheral, service, error):
         if error != nil:
-            print error
+            print(error)
             return
         s = self.findServiceByServiceInstance(service)
         p = s.peripheral
@@ -338,7 +338,7 @@ class OSXPeripheral(NSObject, Peripheral):
             self.logger.debug("%s updated RSSI value: %d -> %d" % (self, self._rssi, rssi))
             self.rssi = rssi
         else:
-            print error
+            print(error)
 
     # Monitoring Changes to a Peripheral's Name or Services
     def peripheralDidUpdateName_(self, peripheral):
